@@ -12,7 +12,8 @@
 
 FROM debian:jessie
 
-MAINTAINER Clemens Stolle klaemo@apache.org
+LABEL maintainer="Austin Delamar @amdelamar" \
+      description="Blog system on CouchDB."
 
 # Add CouchDB user account
 RUN groupadd -r couchdb && useradd -d /opt/couchdb -g couchdb couchdb
@@ -92,10 +93,17 @@ RUN buildDeps=' \
  # Cleanup build detritus
  && apt-get purge -y --auto-remove $buildDeps \
  && rm -rf /var/lib/apt/lists/* /usr/lib/node_modules /usr/src/couchdb*
+ 
+# SSL certificate
+RUN openssl genrsa -des3 -passout pass:changeit -out privkey.pem 4096 -noout \
+ && openssl req -new -x509 -days 1826 -key privkey.pem -out cert.pem -passin pass:changeit \
+    -subj "/C=US/ST=-/L=-/O=Test/OU=Test/CN=IT/emailAddress=info@example.com"
 
 # Add configuration
 COPY local.ini /opt/couchdb/etc/local.d/
 COPY vm.args /opt/couchdb/etc/
+COPY cert.pem /opt/couchdb/etc/cert.pem
+COPY privkey.pem /opt/couchdb/etc/privkey.pem
 
 COPY ./docker-entrypoint.sh /
 
@@ -105,7 +113,7 @@ RUN chmod +x /docker-entrypoint.sh \
  && chown -R couchdb:couchdb /opt/couchdb/
 
 WORKDIR /opt/couchdb
-EXPOSE 5984 4369 9100
+EXPOSE 6984
 VOLUME ["/opt/couchdb/data"]
 
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]

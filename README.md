@@ -2,10 +2,7 @@
 
 Blog database on CouchDB.
 
-NOTICE: Official CouchDB image located at https://github.com/apache/couchdb-docker
-If you're looking for a CouchDB with SSL support you can check out [klaemo/couchdb-ssl](https://index.docker.io/u/klaemo/couchdb-ssl/)
-
-- Version (stable): `CouchDB 2.0.0`, `Erlang 17.3`
+> NOTICE: Official CouchDB image located at https://github.com/apache/couchdb-docker
 
 ## Available tags
 
@@ -13,15 +10,10 @@ If you're looking for a CouchDB with SSL support you can check out [klaemo/couch
 
 ## Features
 
- * Built on top of the solid and small `debian:jessie` base image
- * Exposes CouchDB on port `5984` of the container
- * Runs everything as user `couchdb` (security ftw!)
+ * Small `debian:jessie` base image
+ * Auto SSL with a self-signed cert if none are provided
+ * Exposes port `6984` of the container
  * Docker volume for data
-
-## Planned Features
-
- * Explore Alpine Linux as base image.
- * Enable SSL automatically with a self-signed cert if none provided
 
 ## Usage
 
@@ -41,14 +33,16 @@ Example Dockerfile:
 ```
 FROM rant/database:latest
 
-COPY local.ini /usr/local/etc/couchdb/local.d/
+COPY local.ini /opt/couchdb/etc/local.d/
+COPY cert.pem /opt/couchdb/etc/cert.pem
+COPY privkey.pem /opt/couchdb/etc/privkey.pem
 ```
 
 and then build and run
 
 ```
 [sudo] docker build -t you/awesome-couchdb .
-[sudo] docker run -d -p 5984:5984 -v ~/couchdb:/usr/local/var/lib/couchdb you/awesome-couchdb
+[sudo] docker run -d -p 6984:6984 -v ~/couchdb:/usr/local/var/lib/couchdb you/awesome-couchdb
 ```
 
 ## License
