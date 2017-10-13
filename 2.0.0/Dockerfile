@@ -96,15 +96,13 @@ RUN buildDeps=' \
  
 # SSL certificate
 RUN openssl genrsa -des3 -passout pass:changeit -out privkey.pem 4096 -noout \
- && openssl req -new -x509 -days 1826 -key privkey.pem -out cert.pem -passin pass:changeit \
-    -subj "/C=US/ST=-/L=-/O=Test/OU=Test/CN=IT/emailAddress=info@example.com"
+ && openssl req -new -x509 -days 1826 -key privkey.pem -out cert.pem -passin pass:changeit -subj "/C=US/ST=-/L=-/O=Test/OU=Test/CN=IT/emailAddress=info@example.com"
 
 # Add configuration
 COPY local.ini /opt/couchdb/etc/local.d/
 COPY vm.args /opt/couchdb/etc/
 COPY cert.pem /opt/couchdb/etc/cert.pem
 COPY privkey.pem /opt/couchdb/etc/privkey.pem
-
 COPY ./docker-entrypoint.sh /
 
 # Setup directories and permissions

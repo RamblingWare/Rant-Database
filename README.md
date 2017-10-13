@@ -2,7 +2,7 @@
 
 Blog database on CouchDB.
 
-> NOTICE: Official CouchDB image located at https://github.com/apache/couchdb-docker
+> NOTICE: Official CouchDB image located [here](https://github.com/apache/couchdb-docker).
 
 ## Available tags
 
@@ -21,7 +21,10 @@ This project is still in development. It is not easily modifiable for "new" blog
 
 ### Docker Deploy
 
-> Coming soon...
+```
+docker pull rant/database:latest
+docker run -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=admin -p 6984:6984 --name database rant/database
+```
 
 
 ### Build your own
@@ -38,12 +41,7 @@ COPY cert.pem /opt/couchdb/etc/cert.pem
 COPY privkey.pem /opt/couchdb/etc/privkey.pem
 ```
 
-and then build and run
-
-```
-[sudo] docker build -t you/awesome-couchdb .
-[sudo] docker run -d -p 6984:6984 -v ~/couchdb:/usr/local/var/lib/couchdb you/awesome-couchdb
-```
+and then build and run.
 
 ## License
 
