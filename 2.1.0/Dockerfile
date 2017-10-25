@@ -7,8 +7,10 @@ LABEL maintainer="Austin Delamar @amdelamar" \
 RUN mkdir /opt/couchdb/cert \
   && cd /opt/couchdb/cert \
   && openssl genrsa -out privkey.pem 4096 -noout \
-  && openssl req -new -x509 -days 1826 -key privkey.pem -out cert.pem -subj "/C=US/ST=-/L=-/O=Test/OU=Test/CN=IT/emailAddress=info@example.com"
-
+  && openssl req -new -x509 -days 1826 -key privkey.pem -out cert.pem -subj "/C=US/ST=-/L=-/O=Test/OU=Test/CN=IT/emailAddress=info@example.com" \
+  && chmod +x privkey.pem cert.pem \
+  && chown couchdb privkey.pem cert.pem
+  
 # Add configuration
 COPY local.ini /opt/couchdb/etc/local.d
 
