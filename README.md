@@ -1,25 +1,26 @@
 # Rant-Database (CouchDB)
 
-Blog database on CouchDB.
+Blog database for Rant.
 
-> NOTICE: Official CouchDB image located [here](https://github.com/apache/couchdb-docker).
+## Available Tags
 
-## Available tags
-
-- `latest`, `2.1.0`: CouchDB 2.1.0 single node
+- `2.1.0` - CouchDB 2.1.0 single node
+- `latest` - same as above
 
 ## Features
 
- * Small `debian:jessie` base image
+ * Built off `apache/couchdb` base image
  * Auto SSL with a self-signed cert if none are provided
  * Exposes port `6984` of the container
  * Docker volume for data `/opt/couchdb/data`
 
 ## Usage
 
-This project is still in development. It is not easily modifiable for "new" blogs, but stay tuned. I plan to make a self-installing version once the main features are complete. Essentially, this is a database for the [Rant](https://github.com/RamblingWare/Rant) backend. 
+This project is still in development. It is not easily modifiable for "new" blogs, but stay tuned. I plan to make a self-installing version once the main features are complete. Essentially, this is a database for the [Rant](https://github.com/RamblingWare/Rant) backend.
 
-### Docker Deploy
+> NOTICE: The Official CouchDB image located [here](https://github.com/apache/couchdb-docker). 
+
+### Deploy
 
 ```
 docker pull rant/couchdb:2.1.0
