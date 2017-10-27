@@ -12,8 +12,7 @@ RUN mkdir /opt/couchdb/cert \
   && chown couchdb privkey.pem cert.pem
   
 # Add configuration
-COPY local.ini /opt/couchdb/etc/local.d
+COPY local.ini /opt/couchdb/etc/local.d/
+COPY vm.args /opt/couchdb/etc/
 
 EXPOSE 6984
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/opt/couchdb/bin/couchdb"]
