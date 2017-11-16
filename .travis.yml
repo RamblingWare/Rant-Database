@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t couchdb:2.1.0 2.1.0
+  - docker build -t couchdb:2.1.1 .
 
 script:
-  - docker run -d -p 6984:6984 couchdb:2.1.0 && sleep 5 && curl http://localhost:6984
+  - docker run -d -p 6984:6984 couchdb:2.1.1 && sleep 5 && curl http://localhost:6984
