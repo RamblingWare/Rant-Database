@@ -1,7 +1,7 @@
 # couchdb-docker
 
 [![Build Status](https://travis-ci.org/oddoxorg/couchdb-docker.svg?branch=master)](https://travis-ci.org/oddoxorg/couchdb-docker)
-[![Docker Pulls](https://img.shields.io/docker/pulls/rant/couchdb.svg)](https://hub.docker.com/r/oddoxorg/couchdb/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/oddoxorg/couchdb.svg)](https://hub.docker.com/r/oddoxorg/couchdb/)
 [![License](https://img.shields.io/:license-apache-blue.svg)](https://github.com/oddoxorg/couchdb-docker/blob/master/LICENSE)
 
 CouchDB Dockerfiles for Oddox
@@ -20,7 +20,7 @@ CouchDB Dockerfiles for Oddox
 
 ## Usage
 
-This project is still in development. It is not easily modifiable for "new" blogs, but stay tuned. I plan to make a self-installing version once the main features are complete. Essentially, this is a database for the [Rant](https://github.com/oddoxorg/Rant) webapp.
+This project is still in development. It is not easily modifiable for "new" blogs, but stay tuned. I plan to make a self-installing version once the main features are complete.
 
 > Note: The Official CouchDB image is located [here](https://github.com/apache/couchdb-docker). If you're looking for that instead.
 
@@ -38,7 +38,7 @@ Provide your own version of the `local.ini` for your custom CouchDB config.
 Example Dockerfile:
 
 ```
-FROM rant/couchdb:2.1.0
+FROM oddoxorg/couchdb:2.1.1
 
 COPY local.ini /opt/couchdb/etc/local.d/
 COPY vm.args /opt/couchdb/etc/
